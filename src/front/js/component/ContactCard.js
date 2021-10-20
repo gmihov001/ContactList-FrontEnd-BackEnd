@@ -29,16 +29,16 @@ export class ContactCard extends React.Component {
 									/>
 								</div>
 
-								<div className="col-12 col-sm-6 col-md-6 text-start ml-5">
+								<div className="col-12 col-sm-6 col-md-6 text-start">
 									<label className="name-lead mb-2">
 										<h5>{this.props.name}</h5>
 									</label>
 									<br />
-									<i className="fas fa-map-marker-alt text-muted mr-3" />
+									<i className="fas fa-map-marker-alt text-muted me-3" />
 									<span className="text-muted ml-3">{this.props.address}</span>
 									<br />
 									<i
-										className="fa fa-phone fa-fw text-muted mr-3"
+										className="fa fa-phone fa-fw text-muted me-3"
 										data-toggle="tooltip"
 										title=""
 										data-original-title="(870) 288-4149"
@@ -46,7 +46,7 @@ export class ContactCard extends React.Component {
 									<span className="text-muted small">{this.props.phone}</span>
 									<br />
 									<i
-										className="fa fa-envelope fa-fw text-muted mr-3"
+										className="fa fa-envelope fa-fw text-muted me-3"
 										data-toggle="tooltip"
 										data-original-title=""
 										title=""
@@ -58,7 +58,7 @@ export class ContactCard extends React.Component {
 									<div className="">
 										<Link to={"/edit/" + this.props.id + "/" + this.props.name}>
 											<button className="btn">
-												<i className="fas fa-pencil-alt mr-3" />
+												<i className="fas fa-pencil-alt mr-3 text-warning" />
 											</button>
 										</Link>
 										<button
@@ -66,7 +66,7 @@ export class ContactCard extends React.Component {
 											onClick={() => {
 												this.props.onDelete();
 											}}>
-											<i className="fas fa-trash-alt" />
+											<i className="fas fa-trash-alt text-danger" />
 										</button>
 									</div>
 								</div>
