@@ -21,28 +21,15 @@ export class ContactCard extends React.Component {
 					return (
 						<li className="list-group-item">
 							<div className="row w-100">
-								<div className="col-12 col-sm-6 col-md-3 px-0">
+								<div className="col-6 col-sm-6 col-md-3 px-0">
 									<img
 										src={MikePhoto}
-										alt="Mike Anamendolla"
+										alt="Photo"
 										className="rounded-circle mx-auto d-block img-fluid"
 									/>
 								</div>
-								<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-									<div className=" float-right">
-										<Link to={"/edit/" + this.props.id + "/" + this.props.name}>
-											<button className="btn">
-												<i className="fas fa-pencil-alt mr-3" />
-											</button>
-										</Link>
-										<button
-											className="btn"
-											onClick={() => {
-												this.props.onDelete();
-											}}>
-											<i className="fas fa-trash-alt" />
-										</button>
-									</div>
+
+								<div className="col-12 col-sm-6 col-md-6 text-left">
 									<label className="name-lead">{this.props.name}</label>
 									<br />
 									<i className="fas fa-map-marker-alt text-muted mr-3" />
@@ -63,6 +50,23 @@ export class ContactCard extends React.Component {
 										title=""
 									/>
 									<span className="text-muted small text-truncate">{this.props.email}</span>
+								</div>
+
+								<div className="col-6 col-sm-3 col-md-3 text-right">
+									<div className="">
+										<Link to={"/edit/" + this.props.id + "/" + this.props.name}>
+											<button className="btn">
+												<i className="fas fa-pencil-alt mr-3" />
+											</button>
+										</Link>
+										<button
+											className="btn"
+											onClick={() => {
+												this.props.onDelete();
+											}}>
+											<i className="fas fa-trash-alt" />
+										</button>
+									</div>
 								</div>
 							</div>
 						</li>
