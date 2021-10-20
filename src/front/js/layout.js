@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Contacts } from "./pages/Contacts";
 import { AddContact } from "./pages/AddContact";
-import { Single } from "./pages/single";
+import { EditContact } from "./pages/EditContact";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -30,9 +30,6 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/edit/:id/:name">
 							<EditContact />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
