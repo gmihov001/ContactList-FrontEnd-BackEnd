@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const AddContact = () => {
-	
-    const { store, actions } = useContext(Context);
-	
-    const [contact, setContact] = useState({
+	const { store, actions } = useContext(Context);
+
+	const [contact, setContact] = useState({
 		name: null,
 		address: null,
 		phone: null,
