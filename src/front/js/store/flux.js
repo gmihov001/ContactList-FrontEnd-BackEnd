@@ -1,47 +1,68 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			contact: [],
+			agenda: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			addContact: (name, address, phone, email) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						agenda_slug: "george_agenda",
+						full_name: name,
+						email: email,
+						phone: phone,
+						address: address
+					})
+				})
+					.then(response => response.json())
+					.then(() => {
+						fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+							.then(response => response.json())
+							.then(data => setStore({ agenda: data }));
+						console.log("created");
+					});
 			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
+			editContact: (name, address, phone, email, id) => {
+				let store = getStore();
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "put",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						agenda_slug: "george_agenda",
+						full_name: name,
+						email: email,
+						phone: phone,
+						address: address
+					})
+				})
+					.then(response => response.json())
+					.then(() => {
+						fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+							.then(response => response.json())
+							.then(data => {
+								console.log(data);
+								setStore({ agenda: data });
+							});
+					});
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			deleteContact: id => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "delete",
+					headers: { "Content-Type": "aplication/json" }
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+						.then(response => response.json())
+						.then(data => {
+							setStore({ agenda: data });
+						});
 				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
+
+			//(Arrow) Functions that update the Store
+			// Remember to use the scope: scope.state.store & scope.setState()
 		}
 	};
 };
