@@ -19,7 +19,7 @@ export class ContactCard extends React.Component {
 			<Context.Consumer>
 				{({ store, actions }) => {
 					return (
-						<li className="list-group-item">
+						<li className="list-group-item p-4">
 							<div className="row w-100">
 								<div className="col-6 col-sm-6 col-md-3 px-0">
 									<img
@@ -29,13 +29,15 @@ export class ContactCard extends React.Component {
 									/>
 								</div>
 
-								<div className="col-12 col-sm-6 col-md-6 text-left">
-									<label className="name-lead">{this.props.name}</label>
+								<div className="col-12 col-sm-6 col-md-6 text-start ml-5">
+									<label className="name-lead mb-2">
+										<h5>{this.props.name}</h5>
+									</label>
 									<br />
 									<i className="fas fa-map-marker-alt text-muted mr-3" />
-									<span className="text-muted">{this.props.address}</span>
+									<span className="text-muted ml-3">{this.props.address}</span>
 									<br />
-									<span
+									<i
 										className="fa fa-phone fa-fw text-muted mr-3"
 										data-toggle="tooltip"
 										title=""
@@ -43,7 +45,7 @@ export class ContactCard extends React.Component {
 									/>
 									<span className="text-muted small">{this.props.phone}</span>
 									<br />
-									<span
+									<i
 										className="fa fa-envelope fa-fw text-muted mr-3"
 										data-toggle="tooltip"
 										data-original-title=""
@@ -52,7 +54,7 @@ export class ContactCard extends React.Component {
 									<span className="text-muted small text-truncate">{this.props.email}</span>
 								</div>
 
-								<div className="col-6 col-sm-3 col-md-3 text-right">
+								<div className="col-6 col-sm-3 col-md-3 text-end">
 									<div className="">
 										<Link to={"/edit/" + this.props.id + "/" + this.props.name}>
 											<button className="btn">
