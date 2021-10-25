@@ -9,12 +9,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//fetch to log in
 				console.log(email, password);
 				setStore({ token: email });
-				let status = checkLogin();
+				let status = getActions().checkLogin();
 				console.log("Status", status);
 				return status;
 			},
 			checkLogin: () => {
-				if (token) return true;
+				if (getStore().token) return true;
 				else return false;
 			},
 			logout: () => {

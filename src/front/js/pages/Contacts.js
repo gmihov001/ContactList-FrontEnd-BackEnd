@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
-import { Context, Consumer } from "../store/appContext";
+import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
-export const Contacts = () => {
+export const Contacts = props => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		showModal: false,
@@ -41,4 +42,8 @@ export const Contacts = () => {
 			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
+};
+
+Contacts.propTypes = {
+	history: PropTypes.object
 };

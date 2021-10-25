@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
-export const Home = () => {
+export const Home = props => {
 	const { store, actions } = useContext(Context);
-
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -57,4 +57,8 @@ export const Home = () => {
 			</form>
 		</div>
 	);
+};
+
+Home.propTypes = {
+	history: PropTypes.object
 };
