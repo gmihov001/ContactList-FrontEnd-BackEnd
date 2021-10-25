@@ -44,7 +44,14 @@ export const Home = () => {
 						Check me out
 					</label>
 				</div>
-				<button type="button" className="btn btn-lg btn-success" onClick={() => actions.login(email, password)}>
+				<button
+					type="button"
+					className="btn btn-lg btn-success"
+					onClick={() => {
+						if (actions.login(email, password)) {
+							props.history.push("/contacts");
+						}
+					}}>
 					Submit
 				</button>
 			</form>
