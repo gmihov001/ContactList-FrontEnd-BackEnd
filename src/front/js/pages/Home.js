@@ -13,7 +13,7 @@ export const Home = () => {
 			<form>
 				<div className="mb-3">
 					<h2 className="mb-5">Log In</h2>
-					<label forHtml="exampleInputEmail1" className="form-label">
+					<label htmlFor="exampleInputEmail1" className="form-label">
 						Email address
 					</label>
 					<input
@@ -28,7 +28,7 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className="mb-3">
-					<label forHtml="exampleInputPassword1" className="form-label">
+					<label htmlFor="exampleInputPassword1" className="form-label">
 						Password
 					</label>
 					<input
@@ -40,11 +40,11 @@ export const Home = () => {
 				</div>
 				<div className="mb-3 form-check">
 					<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-					<label className="form-check-label" forHtml="exampleCheck1">
+					<label className="form-check-label" htmlFor="exampleCheck1">
 						Check me out
 					</label>
 				</div>
-				<button type="submit" className="btn btn-primary" onClick={() => actions.login(email, password)}>
+				<button type="button" className="btn btn-lg btn-success" onClick={() => actions.login(email, password)}>
 					Submit
 				</button>
 			</form>

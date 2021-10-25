@@ -7,7 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			login: (email, password) => {
 				//fetch to log in
-				setStore({ token: "token" });
+				console.log(email, password);
+				setStore({ token: email });
 			},
 			logout: () => {
 				setStore({ token: null });
