@@ -1,12 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			user: null,
+			token: null,
 			agenda: []
 		},
 		actions: {
-			setUser: userInfo => {
-				setStore({ user: userInfo });
+			login: (email, password) => {
+				//fetch to log in
+				setStore({ token: "token" });
+			},
+			logout: () => {
+				setStore({ token: null });
 			},
 			addContact: (name, address, phone, email) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {

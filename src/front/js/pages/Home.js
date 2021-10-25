@@ -5,6 +5,9 @@ import { Context } from "../store/appContext";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
 	return (
 		<div className="container">
 			<form>
@@ -13,7 +16,13 @@ export const Home = () => {
 					<label forHtml="exampleInputEmail1" className="form-label">
 						Email address
 					</label>
-					<input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+					<input
+						type="email"
+						className="form-control"
+						id="exampleInputEmail1"
+						aria-describedby="emailHelp"
+						onChange={e => setEmail(e.target.value)}
+					/>
 					<div id="emailHelp" className="form-text">
 						We will never share your email with anyone else.
 					</div>
@@ -22,7 +31,12 @@ export const Home = () => {
 					<label forHtml="exampleInputPassword1" className="form-label">
 						Password
 					</label>
-					<input type="password" className="form-control" id="exampleInputPassword1" />
+					<input
+						type="password"
+						className="form-control"
+						id="exampleInputPassword1"
+						onChange={e => setPassword(e.target.value)}
+					/>
 				</div>
 				<div className="mb-3 form-check">
 					<input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -30,7 +44,7 @@ export const Home = () => {
 						Check me out
 					</label>
 				</div>
-				<button type="submit" className="btn btn-primary">
+				<button type="submit" className="btn btn-primary" onClick={() => actions.login(email, password)}>
 					Submit
 				</button>
 			</form>
