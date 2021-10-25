@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Contacts } from "./pages/Contacts";
+import { Home } from "./pages/Home";
 import { AddContact } from "./pages/AddContact";
 import { EditContact } from "./pages/EditContact";
 import injectContext from "./store/appContext";
@@ -22,6 +23,12 @@ const Layout = () => {
 				<ScrollToTop>
 					<Switch>
 						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route exact path="/home">
+							<Home />
+						</Route>
+						<Route exact path="/contacts">
 							<Contacts />
 						</Route>
 						<Route exact path="/add">
