@@ -14,7 +14,7 @@ export const Contacts = () => {
 	return (
 		<div className="container">
 			<div>
-				<p className="text-right my-3">
+				<p className="text-end my-3">
 					<Link className="btn btn-outline-success add-button" to="/add">
 						Add new contact
 					</Link>
