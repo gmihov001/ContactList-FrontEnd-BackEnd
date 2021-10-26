@@ -12,7 +12,7 @@ export const Home = props => {
 		<div className="container">
 			<form>
 				<div className="mb-3">
-					<h2 className="mb-5">Log In</h2>
+					<h2 className="my-4">Log In</h2>
 					<label htmlFor="exampleInputEmail1" className="form-label">
 						Email address
 					</label>

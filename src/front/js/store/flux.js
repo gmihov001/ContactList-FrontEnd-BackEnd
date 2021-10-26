@@ -5,6 +5,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			agenda: []
 		},
 		actions: {
+			getContacts: () => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+					.then(response => response.json())
+					.then(data => {
+						setStore({ agenda: data });
+					})
+					.catch(err => console.log(err));
+			},
 			login: (email, password) => {
 				//fetch to log in
 				console.log(email, password);

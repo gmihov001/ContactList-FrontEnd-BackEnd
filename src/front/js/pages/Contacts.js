@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
 import { Context } from "../store/appContext";
@@ -12,7 +12,7 @@ export const Contacts = props => {
 		id: null
 	});
 
-	return (
+	return store.token ? (
 		<div className="container">
 			<div>
 				<p className="text-end my-3">
@@ -41,6 +41,8 @@ export const Contacts = props => {
 			</div>
 			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />
 		</div>
+	) : (
+		<Redirect to="/" />
 	);
 };
 
