@@ -19,6 +19,9 @@ export const Contacts = props => {
 					<Link className="btn btn-outline-success add-button" to="/add">
 						Add new contact
 					</Link>
+					<button className="btn btn-warning ms-4 add-button" onClick={() => actions.logout()}>
+						LOG OUT
+					</button>
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
