@@ -28,14 +28,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: password
 					})
 				})
-					.then(resp => resp.json())
+					.then(resp => {
+						if (!resp.ok) throw new Error(resp.status);
+						else return resp.json();
+					})
 					.then(respBody => {
-						if (respBody.token) {
+						console.log(respBody);
+						if (respBody && respBody.token) {
 							setStore({ token: respBody.token });
 						}
-						if (respBody.msg) throw new Error(respBody.msg);
+						if (respBody && respBody.msg) alert(respBody.msg);
 					})
-					.catch(err => alert(err));
+					.catch(err => console.log(err));
 			},
 
 			logout: () => {
