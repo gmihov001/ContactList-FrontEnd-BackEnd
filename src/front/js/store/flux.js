@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			agenda: []
+			agenda: [],
+			apiURI: "https://3001-sapphire-pelican-3nf316mn.ws-us18.gitpod.io/api"
 		},
 		actions: {
 			getContacts: () => {
@@ -14,9 +15,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.log(err));
 			},
 			login: (email, password) => {
-				//fetch to log in
 				console.log(email, password);
-				setStore({ token: email });
+				fetch(apiURI + "/login")
+				.then(resp => resp.json())
+				.then(respBody => {
+					setStore({ token: respBody.token });
+				})
+				.catch();
+
 				let status = getActions().checkLogin();
 				console.log("Status", status);
 				return status;
