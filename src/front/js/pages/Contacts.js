@@ -16,7 +16,6 @@ export const Contacts = props => {
 		<div className="container">
 			<div>
 				<p className="text-end my-3">
-					<span className="h5 text-secondary">Welcome back, {store.user}</span>
 					<Link className="btn btn-outline-success add-button ms-5" to="/add">
 						Add new contact
 					</Link>

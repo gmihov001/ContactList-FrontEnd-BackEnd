@@ -2,7 +2,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token"),
-			user: "",
 			agenda: [],
 			apiURI: "https://3001-sapphire-pelican-3nf316mn.ws-us18.gitpod.io/api"
 		},
@@ -36,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(respBody => {
 						console.log(respBody);
 						if (respBody && respBody.token) {
-							setStore({ token: respBody.token, user: respBody.user });
+							setStore({ token: respBody.token });
 							localStorage.setItem("token", respBody.token);
 						}
 						if (respBody && respBody.msg) alert(respBody.msg);
@@ -45,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logout: () => {
-				setStore({ token: "", user: "" });
+				setStore({ token: "" });
 				localStorage.removeItem("token");
 			},
 
