@@ -16,7 +16,8 @@ export const Contacts = props => {
 		<div className="container">
 			<div>
 				<p className="text-end my-3">
-					<Link className="btn btn-outline-success add-button" to="/add">
+					<span className="h5 text-secondary">Welcome back, {store.user}</span>
+					<Link className="btn btn-outline-success add-button ms-5" to="/add">
 						Add new contact
 					</Link>
 					<button className="btn btn-warning ms-4 add-button" onClick={() => actions.logout()}>
