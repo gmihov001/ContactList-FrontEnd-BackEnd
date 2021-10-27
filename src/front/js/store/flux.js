@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logout: () => {
-				setStore({ token: null });
+				setStore({ token: "", user: "" });
 			},
 
 			addContact: (name, address, phone, email) => {
