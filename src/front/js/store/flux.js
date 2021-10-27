@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(err => console.log(err));
 			},
+
 			login: (email, password) => {
 				console.log(email, password);
 				fetch(getStore().apiURI + "/login", {
@@ -22,7 +23,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 						// add this to any fetch in headers  authorization: "Bearer " + store.token
 					},
-
 					body: JSON.stringify({
 						email: email,
 						password: password
@@ -30,14 +30,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(respBody => {
-						setStore({ token: respBody.token });
+						if (respBody.token) {
+							setStore({ token: respBody.token });
+						}
+						if (respBody.msg) throw new Error(respBody.msg);
 					})
-					.catch(err => console.log(err));
+					.catch(err => alert(err));
 			},
 
 			logout: () => {
 				setStore({ token: null });
 			},
+
 			addContact: (name, address, phone, email) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",

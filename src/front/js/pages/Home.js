@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
@@ -8,7 +8,9 @@ export const Home = props => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	return (
+	return store.token ? (
+		<Redirect to="/contacts" />
+	) : (
 		<div className="container">
 			<form>
 				<div className="mb-3">
