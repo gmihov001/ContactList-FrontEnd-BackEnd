@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logout: () => {
-				setStore({ token: "" });
+				setStore({ token: null });
 				localStorage.removeItem("token");
 			},
 
