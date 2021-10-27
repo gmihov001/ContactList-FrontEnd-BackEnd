@@ -16,21 +16,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			login: (email, password) => {
 				console.log(email, password);
-				fetch(apiURI + "/login")
-				.then(resp => resp.json())
-				.then(respBody => {
-					setStore({ token: respBody.token });
-				})
-				.catch();
+				fetch(getStore().apiURI + "/login", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+						// add this to any fetch in headers  authorization: "Bearer " + store.token
+					},
 
-				let status = getActions().checkLogin();
-				console.log("Status", status);
-				return status;
+					body: JSON.stringify({
+						email: email,
+						password: password
+					})
+				})
+					.then(resp => resp.json())
+					.then(respBody => {
+						setStore({ token: respBody.token });
+					})
+					.catch(err => console.log(err));
 			},
-			checkLogin: () => {
-				if (getStore().token) return true;
-				else return false;
-			},
+
 			logout: () => {
 				setStore({ token: null });
 			},
