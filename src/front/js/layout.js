@@ -28,9 +28,7 @@ const Layout = () => {
 						<Route exact path="/add">
 							<AddContact />
 						</Route>
-						<Route exact path="/edit/:id/:name">
-							<EditContact />
-						</Route>
+						<Route exact path="/edit/:id/:name" component={EditContact} />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
