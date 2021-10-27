@@ -64,7 +64,7 @@ export const AddContact = () => {
 					<Link to="/">
 						<button
 							type="button"
-							className="btn btn-primary form-control"
+							className="btn btn-success form-control"
 							disabled={!contact.name || !contact.address || !contact.phone || !contact.email}
 							onClick={() =>
 								actions.addContact(contact.name, contact.address, contact.phone, contact.email)

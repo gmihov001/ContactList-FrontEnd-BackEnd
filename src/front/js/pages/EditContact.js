@@ -68,7 +68,7 @@ export const EditContact = props => {
 					<Link to="/">
 						<button
 							type="button"
-							className="btn btn-primary form-control"
+							className="btn btn-warning form-control"
 							onClick={() =>
 								actions.editContact(
 									updatedContact.name,
