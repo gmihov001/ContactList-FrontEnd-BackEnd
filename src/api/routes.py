@@ -78,15 +78,23 @@ def update_contact():
     if contact is None:
         raise APIException('User not found', status_code=404)
 
-    if "email" not in body and "password" not in body: 
+    if "full_name" not in body and
+    "email" not in body and 
+    "phone" not in body and 
+    "address" not in body: 
         raise APIException('No new data was received', status_code=404)
     
+    if "full_name" in body:
+        contact.full_name = body['full_name']
+
     if "email" in body:
         contact.email = body['email']
 
-    if "password" in body:    
-        contact.password = body['password']
+    if "phone" in body:    
+        contact.password = body['phone']
 
+    if "address" in body:
+        contact.address = body['address']
     db.session.commit()
     
     
