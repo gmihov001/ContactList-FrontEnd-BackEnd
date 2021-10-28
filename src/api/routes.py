@@ -36,12 +36,17 @@ def login():
 
 @api.route('/user', methods=['POST'])
 def register():
-    info = request.json    
-    new_user = User(email=info['email'], password=info['password'])
-    db.session.add(new_user)
+    info = request.json 
+    user_exists = User.query.filter_by(email=info['email'])
+    if user_exists:
+        raise APIException('This user already exists', status_code=409)
+    else:    
+        new_user = User(email=info['email'], password=info['password'])
+        db.session.add(new_user)
+        db.session.commit()
 
-    users = User.query.all()
-    users_serialized = list(map(lambda x: x.serialize(), users))
-
-
-    return jsonify("")    
+        user_created = User.query.filter_by(email=info['email'])
+        if user_created:
+            return jsonify("The user has been created"), 200    
+        else:    
+            raise APIException("User registration failed", status_code=500)
