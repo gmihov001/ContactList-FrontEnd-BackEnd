@@ -115,7 +115,7 @@ def delete_contact(id):
 
     if selected_contact is None:
         return jsonify({
-            'msg':'CONTACT NOT FOUND',
+            'msg':'Contact not found',
             'status': 404
             }), 404
 
@@ -125,6 +125,6 @@ def delete_contact(id):
     check_contact = Contact.query.get(id)       
     if check_contact is None: 
         return jsonify({
-            'msg':'CONTACT WAS DELETED',
+            'msg':'Contact was deleted',
             'status': 200
             }), 200

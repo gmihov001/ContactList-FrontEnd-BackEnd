@@ -103,18 +103,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(getStore().apiURI + "/contacts/" + id, {
 					method: "delete",
 					headers: { "Content-Type": "aplication/json" }
-				}).then(() => {
-					fetch(getStore().apiURI + "/contacts")
-						.then(response => response.json())
-						.then(data => {
-							setStore({ agenda: data });
-						})
-						.catch(err => alert(err));
-				});
-			}
+				})
+					.then(response => response.json())
+					.then(respBody => {
+						if (respBody.status != 200) throw new Error(respBody.msg);
+						if (respBody.status == 200) console.log(respBody.msg);
 
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
+						fetch(getStore().apiURI + "/contacts")
+							.then(response => response.json())
+							.then(data => {
+								setStore({ agenda: data });
+							})
+							.catch(err => alert(err));
+					})
+					.catch(err => alert(err));
+			}
 		}
 	};
 };
