@@ -74,7 +74,10 @@ def add_contact():
 
     contact_created = Contact.query.filter_by(full_name=body['full_name'])
     if contact_created:
-        return jsonify("Contact was saved"), 200    
+        return jsonify({
+            'msg':'Contact was saved.',
+            'status': 200
+            }), 200    
     else:    
         raise APIException("Contact was not saved", status_code=500)
 

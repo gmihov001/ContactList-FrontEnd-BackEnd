@@ -65,8 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(respBody => {
-						console.log(respBody);
 						if (respBody.status != 200) throw new Error(respBody.msg);
+						if (respBody.status == 200) console.log(respBody.msg);
 
 						fetch(getStore().apiURI + "/contacts")
 							.then(response => response.json())
