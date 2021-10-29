@@ -100,11 +100,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			deleteContact: id => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+				fetch(getStore().apiURI + "/contacts/" + id, {
 					method: "delete",
 					headers: { "Content-Type": "aplication/json" }
 				}).then(() => {
-					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+					fetch(getStore().apiURI + "/contacts")
 						.then(response => response.json())
 						.then(data => {
 							setStore({ agenda: data });
