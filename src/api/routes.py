@@ -106,3 +106,9 @@ def update_contact():
     db.session.commit()
     
     return jsonify("Contact was updated"), 200
+
+
+@api.route('/contacts/<id>', methods=['DELETE'])
+def delete_contact(id):
+    selected_contact = Contact.query.get(id)
+    print(selected_contact)
