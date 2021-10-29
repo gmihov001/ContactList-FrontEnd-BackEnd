@@ -112,3 +112,19 @@ def update_contact():
 def delete_contact(id):
     selected_contact = Contact.query.get(id)
     print(selected_contact)
+
+    if selected_contact is None:
+        return jsonify({
+            'msg':'CONTACT NOT FOUND',
+            'status': 404
+            }), 404
+
+    db.session.delete(selected_contact)
+    db.session.commit()
+
+    check_contact = Contact.query.get(id)       
+    if check_contact is None: 
+        return jsonify({
+            'msg':'CONTACT WAS DELETED',
+            'status': 200
+            }), 200
