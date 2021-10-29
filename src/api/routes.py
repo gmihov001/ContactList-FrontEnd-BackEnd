@@ -64,7 +64,7 @@ def add_contact():
     print("CONTACT_EXISTS", contact_exists)
     if contact_exists:
         return jsonify({
-            'msg':'This contact already exists',
+            'msg':'This contact already exists. Use new name.',
             'status': 409
             }), 409
 
