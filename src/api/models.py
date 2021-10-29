@@ -20,9 +20,9 @@ class User(db.Model):
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(120), unique=False, nullable=False)
+    full_name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=False, nullable=True)
-    phone = db.Column(db.Integer, unique=False, nullable=True)
+    phone = db.Column(db.String(20), unique=False, nullable=True)
     address = db.Column(db.String(120), unique=False, nullable=True)    
 
     def __repr__(self):

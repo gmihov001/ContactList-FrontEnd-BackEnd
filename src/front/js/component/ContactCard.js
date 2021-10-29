@@ -90,7 +90,7 @@ ContactCard.propTypes = {
 	address: PropTypes.string,
 	phone: PropTypes.string,
 	email: PropTypes.string,
-	id: PropTypes.string,
+	id: PropTypes.number,
 	position: PropTypes.number
 };
 

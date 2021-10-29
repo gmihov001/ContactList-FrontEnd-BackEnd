@@ -60,13 +60,21 @@ def get_all_contacts():
 @api.route('/contacts', methods=['POST'])
 def add_contact():
     body = request.json
+    contact_exists = Contact.query.filter_by(full_name=body["full_name"]).first()
+    print("CONTACT_EXISTS", contact_exists)
+    if contact_exists:
+        return jsonify({
+            'msg':'This contact already exists',
+            'status': 409
+            }), 409
+
     new_contact = Contact(full_name=body["full_name"], email=body["email"], phone=body["phone"], address=body["address"])
     db.session.add(new_contact)
     db.session.commit()
 
     contact_created = Contact.query.filter_by(full_name=body['full_name'])
     if contact_created:
-        return jsonify(contacts), 200    
+        return jsonify("Contact was saved"), 200    
     else:    
         raise APIException("Contact was not saved", status_code=500)
 
@@ -76,7 +84,7 @@ def update_contact():
     contact = Contact.query.get(body['id'])
 
     if contact is None:
-        raise APIException('User not found', status_code=404)
+        raise APIException('Contact not found', status_code=404)
 
     if "full_name" not in body and "email" not in body and "phone" not in body and "address" not in body: 
         raise APIException('No new data was received', status_code=404)

@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			getContacts: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+				fetch(getStore().apiURI + "/contacts")
 					.then(response => response.json())
 					.then(data => {
 						setStore({ agenda: data });
@@ -49,32 +49,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addContact: (name, address, phone, email) => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				fetch(getStore().apiURI + "/contacts", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						agenda_slug: "george_agenda",
 						full_name: name,
 						email: email,
 						phone: phone,
 						address: address
 					})
 				})
-					.then(response => response.json())
-					.then(() => {
-						fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+					.then(response => {
+						console.log(response);
+						// if (!response.ok) throw new Error(response.status);
+						return response.json();
+					})
+					.then(respBody => {
+						console.log(respBody);
+						if (respBody.status != 200) throw new Error(respBody.msg);
+
+						fetch(getStore().apiURI + "/contacts")
 							.then(response => response.json())
-							.then(data => setStore({ agenda: data }));
-						console.log("created");
-					});
+							.then(data => setStore({ agenda: data }))
+							.catch(err => console.log(err));
+					})
+					.catch(err => alert(err));
 			},
 			editContact: (name, address, phone, email, id) => {
 				let store = getStore();
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+				fetch(getStore().apiURI + "/contacts", {
 					method: "put",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						agenda_slug: "george_agenda",
+						id: id,
 						full_name: name,
 						email: email,
 						phone: phone,
@@ -83,12 +90,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => response.json())
 					.then(() => {
-						fetch("https://assets.breatheco.de/apis/fake/contact/agenda/george_agenda")
+						fetch(getStore().apiURI + "/contacts")
 							.then(response => response.json())
 							.then(data => {
 								console.log(data);
 								setStore({ agenda: data });
-							});
+							})
+							.catch(err => alert(err));
 					});
 			},
 			deleteContact: id => {
@@ -100,7 +108,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						.then(response => response.json())
 						.then(data => {
 							setStore({ agenda: data });
-						});
+						})
+						.catch(err => alert(err));
 				});
 			}
 
